@@ -59,6 +59,9 @@ End Function
 
 Function ReadFields() As Collection
     Set ReadFields = Nothing
+    If Not FileIsOpen Then
+        Exit Function
+    End If
 
     Do Until EOF(f)
         Buffer = Buffer & Input(1, f)
