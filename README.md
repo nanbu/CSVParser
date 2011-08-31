@@ -32,7 +32,7 @@ Visual Basic EditorよりCSVParser.clsをインポートしてください。
 ## API
 
 	OpenFile(Filename)
-Filename: CSVファイルのパス
+Filename: CSVファイルのパス  
 CSVファイルを開きます。
 
 	EndOfData() As Boolean
