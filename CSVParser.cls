@@ -16,14 +16,12 @@ Private CRMode As Boolean
 Private TokenOpen As Boolean
 Private Token As String
 Private Tokens As Collection
-Private EndOfFile As Boolean
 Private FileIsOpen As Boolean
 Private TokensBuffer As Collection
 Private LineClosed As Boolean
 
 Private Sub Class_Initialize()
     FileIsOpen = False
-    EndOfFile = True
 End Sub
 
 Private Sub Class_Terminate()
@@ -35,7 +33,6 @@ Function OpenFile(Filename)
     f = FreeFile
     Open Filename For Input Access Read As f
     FileIsOpen = True
-    EndOfFile = False
     QuoteMode = False
     CRMode = False
     TokenOpen = True
@@ -49,12 +46,11 @@ Function CloseFile()
         Close f
         FileIsOpen = False
     End If
-    EndOfFile = True
     Set Tokens = Nothing
 End Function
 
 Property Get EndOfData() As Boolean
-    EndOfData = EndOfFile
+    EndOfData = Not FileIsOpen
 End Function
 
 Function ReadFields() As Collection
